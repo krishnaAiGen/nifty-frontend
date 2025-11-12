@@ -63,7 +63,7 @@ export default function BotControl() {
     setError('')
     setSuccess('')
     try {
-      const response = await startBot(envData)
+      const response = await startBot(envData as Record<string, string>)
       if (response.success) {
         setBotRunning(true)
         setBotPid(response.pid)
