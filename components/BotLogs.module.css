@@ -1,0 +1,179 @@
+.container {
+  background: white;
+  border-radius: 12px;
+  padding: 32px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid #f0f0f0;
+}
+
+.header > div:first-child {
+  flex: 1;
+}
+
+.header h2 {
+  font-size: 28px;
+  color: #333;
+  margin: 0 0 8px 0;
+}
+
+.logCount {
+  font-size: 14px;
+  color: #666;
+  font-weight: 500;
+}
+
+.refreshButton {
+  padding: 10px 20px;
+  background: #667eea;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.refreshButton:hover:not(:disabled) {
+  opacity: 0.9;
+}
+
+.refreshButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.error {
+  background-color: #fee;
+  color: #c33;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+
+.tableContainer {
+  overflow-x: auto;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background: white;
+  max-height: 70vh;
+  overflow-y: auto;
+}
+
+.logsTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  min-width: 1200px;
+}
+
+.logsTable thead {
+  position: sticky;
+  top: 0;
+  background: #667eea;
+  color: white;
+  z-index: 10;
+}
+
+.logsTable th {
+  padding: 12px 16px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 2px solid #5568d3;
+}
+
+.logsTable tbody tr {
+  border-bottom: 1px solid #f0f0f0;
+  transition: background-color 0.2s;
+}
+
+.logsTable tbody tr:hover {
+  background-color: #f8f9ff;
+}
+
+.logsTable tbody tr:last-child {
+  border-bottom: none;
+}
+
+.logsTable td {
+  padding: 12px 16px;
+  color: #333;
+  vertical-align: top;
+}
+
+.tradeId {
+  font-weight: 600;
+  color: #667eea;
+  font-family: 'Monaco', 'Courier New', monospace;
+}
+
+.optionName {
+  font-family: 'Monaco', 'Courier New', monospace;
+  font-size: 12px;
+  color: #555;
+}
+
+.tradeType {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.tradeType.long {
+  background: #d4edda;
+  color: #155724;
+}
+
+.tradeType.short {
+  background: #f8d7da;
+  color: #721c24;
+}
+
+.exitReason {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.exitReason.profit {
+  background: #d4edda;
+  color: #155724;
+}
+
+.exitReason.loss {
+  background: #f8d7da;
+  color: #721c24;
+}
+
+.timeCell {
+  font-size: 11px;
+  color: #666;
+  white-space: nowrap;
+  font-family: 'Monaco', 'Courier New', monospace;
+}
+
+.loading,
+.empty {
+  padding: 40px;
+  text-align: center;
+  color: #999;
+  font-size: 16px;
+}
+

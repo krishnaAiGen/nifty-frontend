@@ -1,0 +1,259 @@
+.container {
+  background: white;
+  border-radius: 12px;
+  padding: 32px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid #f0f0f0;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.header > div:first-child {
+  flex: 1;
+}
+
+.header h2 {
+  font-size: 28px;
+  color: #333;
+  margin: 0 0 8px 0;
+}
+
+.botStatus {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #666;
+  font-weight: 500;
+}
+
+.statusIndicator {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #28a745;
+  display: inline-block;
+  animation: pulse 2s infinite;
+}
+
+.statusIndicator.statusStopped {
+  background: #dc3545;
+  animation: none;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.secondaryButton,
+.startButton,
+.stopButton,
+.saveButton {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.secondaryButton {
+  background: #6c757d;
+  color: white;
+}
+
+.startButton {
+  background: #28a745;
+  color: white;
+}
+
+.stopButton {
+  background: #dc3545;
+  color: white;
+}
+
+.saveButton {
+  background: #667eea;
+  color: white;
+}
+
+.secondaryButton:hover:not(:disabled),
+.startButton:hover:not(:disabled),
+.stopButton:hover:not(:disabled),
+.saveButton:hover:not(:disabled) {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.secondaryButton:disabled,
+.startButton:disabled,
+.stopButton:disabled,
+.saveButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.error {
+  background-color: #fee;
+  color: #c33;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+
+.success {
+  background-color: #efe;
+  color: #3c3;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+
+.kiteLinkSection {
+  margin-top: 24px;
+  margin-bottom: 24px;
+}
+
+.kiteLinkBox {
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  border: 2px solid #667eea;
+  border-radius: 12px;
+  padding: 24px;
+  text-align: center;
+}
+
+.kiteLinkBox h3 {
+  font-size: 20px;
+  color: #333;
+  margin: 0 0 12px 0;
+  font-weight: 600;
+}
+
+.kiteLinkBox > p {
+  color: #555;
+  font-size: 14px;
+  margin: 0 0 16px 0;
+  line-height: 1.6;
+}
+
+.kiteLink {
+  display: inline-block;
+  padding: 14px 28px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 16px;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.kiteLink:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+.kiteNote {
+  margin-top: 16px;
+  font-size: 12px;
+  color: #666;
+  font-style: italic;
+  margin-bottom: 0;
+}
+
+.envSection {
+  margin-top: 24px;
+}
+
+.envHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.envHeader h3 {
+  font-size: 20px;
+  color: #333;
+  margin: 0;
+}
+
+.envForm {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.envField {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.envField label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+}
+
+.envInput {
+  padding: 12px 16px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: 'Monaco', 'Courier New', monospace;
+  transition: border-color 0.2s;
+  background: #f9f9f9;
+  color: #333;
+}
+
+.envInput:focus {
+  outline: none;
+  border-color: #667eea;
+  background: white;
+}
+
+.envInput:disabled {
+  background-color: #f5f5f5;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.envNote {
+  margin-top: 16px;
+  padding: 12px;
+  background: #f0f7ff;
+  border-left: 3px solid #667eea;
+  border-radius: 4px;
+}
+
+.envNote p {
+  margin: 0;
+  font-size: 13px;
+  color: #555;
+  line-height: 1.5;
+}
+
