@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import { fetchEnv, startBot, stopBot, getBotStatus } from '@/lib/api'
 import styles from './BotControl.module.css'
 
-interface EnvData {
+interface EnvData extends Record<string, string> {
   KITE_REQUEST_TOKEN: string
   TRADING_QUANTITY: string
   OPTION_EXPIRY: string
@@ -63,7 +63,7 @@ export default function BotControl() {
     setError('')
     setSuccess('')
     try {
-      const response = await startBot(envData as Record<string, string>)
+      const response = await startBot(envData)
       if (response.success) {
         setBotRunning(true)
         setBotPid(response.pid)
