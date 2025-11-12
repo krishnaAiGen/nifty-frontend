@@ -46,15 +46,15 @@ export default function BotLogs() {
         logText = response
       } else if (Array.isArray(response)) {
         // If array, join all items with newlines
-        logText = response.map(item => 
+        logText = response.map((item: any) => 
           typeof item === 'string' ? item : JSON.stringify(item, null, 2)
         ).join('\n')
       } else if (response.data && Array.isArray(response.data)) {
-        logText = response.data.map(item => 
+        logText = response.data.map((item: any) => 
           typeof item === 'string' ? item : JSON.stringify(item, null, 2)
         ).join('\n')
       } else if (response.success && Array.isArray(response.data)) {
-        logText = response.data.map(item => 
+        logText = response.data.map((item: any) => 
           typeof item === 'string' ? item : JSON.stringify(item, null, 2)
         ).join('\n')
       } else if (response.data && typeof response.data === 'string') {
