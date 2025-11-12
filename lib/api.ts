@@ -85,6 +85,12 @@ export const fetchLogs = async (): Promise<LogsResponse> => {
   throw new Error('Invalid logs response format')
 }
 
+export const fetchBotLogs = async (): Promise<any> => {
+  const url = getEndpoint('NEXT_PUBLIC_API_GET_LOGS_ENDPOINT', '/api/get_logs')
+  const response = await apiCall(url, { method: 'GET' })
+  return response
+}
+
 export const fetchEnv = async (): Promise<EnvResponse> => {
   const url = getEndpoint('NEXT_PUBLIC_API_GET_ENV_ENDPOINT', '/api/env')
   const response = await apiCall(url, { method: 'GET' })

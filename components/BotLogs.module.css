@@ -1,8 +1,9 @@
 .container {
-  background: white;
+  background: #2d2d44;
   border-radius: 12px;
   padding: 32px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  border: 1px solid #3d3d5c;
 }
 
 .header {
@@ -11,7 +12,7 @@
   align-items: flex-start;
   margin-bottom: 24px;
   padding-bottom: 16px;
-  border-bottom: 2px solid #f0f0f0;
+  border-bottom: 2px solid #3d3d5c;
 }
 
 .header > div:first-child {
@@ -20,13 +21,13 @@
 
 .header h2 {
   font-size: 28px;
-  color: #333;
+  color: #e0e0e0;
   margin: 0 0 8px 0;
 }
 
 .logCount {
   font-size: 14px;
-  color: #666;
+  color: #b0b0b0;
   font-weight: 500;
 }
 
@@ -52,19 +53,20 @@
 }
 
 .error {
-  background-color: #fee;
-  color: #c33;
+  background-color: #4a1a1a;
+  color: #ff6b6b;
   padding: 12px;
   border-radius: 8px;
   margin-bottom: 16px;
   font-size: 14px;
+  border: 1px solid #6b2a2a;
 }
 
 .tableContainer {
   overflow-x: auto;
-  border: 1px solid #e0e0e0;
+  border: 1px solid #3d3d5c;
   border-radius: 8px;
-  background: white;
+  background: #1e1e2e;
   max-height: 70vh;
   overflow-y: auto;
 }
@@ -95,12 +97,12 @@
 }
 
 .logsTable tbody tr {
-  border-bottom: 1px solid #f0f0f0;
+  border-bottom: 1px solid #3d3d5c;
   transition: background-color 0.2s;
 }
 
 .logsTable tbody tr:hover {
-  background-color: #f8f9ff;
+  background-color: #2d2d44;
 }
 
 .logsTable tbody tr:last-child {
@@ -109,7 +111,7 @@
 
 .logsTable td {
   padding: 12px 16px;
-  color: #333;
+  color: #e0e0e0;
   vertical-align: top;
 }
 
@@ -122,7 +124,7 @@
 .optionName {
   font-family: 'Monaco', 'Courier New', monospace;
   font-size: 12px;
-  color: #555;
+  color: #b0b0b0;
 }
 
 .tradeType {
@@ -164,7 +166,7 @@
 
 .timeCell {
   font-size: 11px;
-  color: #666;
+  color: #888;
   white-space: nowrap;
   font-family: 'Monaco', 'Courier New', monospace;
 }
@@ -173,7 +175,59 @@
 .empty {
   padding: 40px;
   text-align: center;
-  color: #999;
+  color: #888;
   font-size: 16px;
+}
+
+.tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 24px;
+  border-bottom: 2px solid #3d3d5c;
+}
+
+.tab {
+  padding: 12px 24px;
+  background: transparent;
+  border: none;
+  border-bottom: 3px solid transparent;
+  font-size: 14px;
+  font-weight: 500;
+  color: #b0b0b0;
+  cursor: pointer;
+  transition: all 0.2s;
+  position: relative;
+  top: 2px;
+}
+
+.tab:hover {
+  color: #667eea;
+  background: #3d3d5c;
+}
+
+.tab.activeTab {
+  color: #667eea;
+  border-bottom-color: #667eea;
+  font-weight: 600;
+}
+
+.botLogsContainer {
+  padding: 20px;
+  background: #1e1e1e;
+  border-radius: 8px;
+  overflow: auto;
+  max-height: 70vh;
+}
+
+.botLogContent {
+  margin: 0;
+  font-family: 'Monaco', 'Courier New', monospace;
+  font-size: 13px;
+  color: #d4d4d4;
+  white-space: pre;
+  word-break: normal;
+  line-height: 1.6;
+  overflow-x: auto;
+  overflow-y: visible;
 }
 
