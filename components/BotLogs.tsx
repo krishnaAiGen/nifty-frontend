@@ -122,20 +122,56 @@ export default function BotLogs() {
   const getColumnHeaders = () => {
     if (profitLossLogs.length === 0) return []
     
+    // Predefined column order
+    const preferredOrder = [
+      'trade_id',
+      'trade_type',
+      'option_name',
+      'exit_reason',
+      'buy_time',
+      'buy_nifty_price',
+      'buy_option_price',
+      'buy_order_id',
+      'sell_time',
+      'sell_nifty_price',
+      'sell_option_price',
+      'sell_order_id',
+      'stop_loss_nifty',
+      'take_profit_nifty',
+      'profit_or_loss',
+      'profit_or_loss_points_nifty',
+      'profit_or_loss_points_option',
+      'profit_or_loss_balance',
+      'balance_before',
+      'balance_after',
+      'total_balance',
+      'created_at',
+      'updated_at'
+    ]
+    
     // Get all unique keys from all log entries
     const allKeys = new Set<string>()
     profitLossLogs.forEach(log => {
       Object.keys(log).forEach(key => allKeys.add(key))
     })
     
-    // Sort keys for consistent display (trade_id first, then alphabetically)
-    const sortedKeys = Array.from(allKeys).sort((a, b) => {
-      if (a === 'trade_id') return -1
-      if (b === 'trade_id') return 1
-      return a.localeCompare(b)
+    // Order columns: preferred order first, then any additional columns
+    const result: string[] = []
+    
+    // Add columns in preferred order if they exist
+    preferredOrder.forEach(key => {
+      if (allKeys.has(key)) {
+        result.push(key)
+        allKeys.delete(key)
+      }
     })
     
-    return sortedKeys
+    // Add any remaining columns that weren't in the preferred order
+    allKeys.forEach(key => {
+      result.push(key)
+    })
+    
+    return result
   }
 
   const formatColumnName = (key: string) => {
