@@ -215,6 +215,23 @@ export default function BotLogs() {
       )
     }
     
+    // Profit Or Loss Balance column - color code based on value
+    if (key === 'profit_or_loss_balance') {
+      const numValue = typeof value === 'string' ? parseFloat(value) : value
+      const isPositive = numValue > 0
+      const isNegative = numValue < 0
+      return (
+        <td key={key}>
+          <span className={`${styles.profitOrLoss} ${
+            isPositive ? styles.profitValue :
+            isNegative ? styles.lossValue : ''
+          }`}>
+            {formatValue(key, value)}
+          </span>
+        </td>
+      )
+    }
+    
     // Date fields
     if (key.includes('time') || key.includes('_at') || key.includes('created') || key.includes('updated')) {
       return <td key={key} className={styles.timeCell}>{formatValue(key, value)}</td>

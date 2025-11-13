@@ -165,6 +165,18 @@
   color: #721c24;
 }
 
+.profitOrLoss {
+  font-weight: 600;
+}
+
+.profitOrLoss.profitValue {
+  color: #28a745;
+}
+
+.profitOrLoss.lossValue {
+  color: #dc3545;
+}
+
 .timeCell {
   font-size: 11px;
   color: #888;
