@@ -102,6 +102,92 @@ export default function BotLogs() {
     return typeof price === 'number' ? price.toFixed(2) : price
   }
 
+  const formatValue = (key: string, value: any) => {
+    if (value === null || value === undefined) return '-'
+    
+    // Format dates
+    if (key.includes('time') || key.includes('_at') || key.includes('created') || key.includes('updated')) {
+      return formatDate(value)
+    }
+    
+    // Format prices
+    if (key.includes('price') || key.includes('quantity') || key.includes('amount')) {
+      return formatPrice(value)
+    }
+    
+    // Return as string
+    return String(value)
+  }
+
+  const getColumnHeaders = () => {
+    if (profitLossLogs.length === 0) return []
+    
+    // Get all unique keys from all log entries
+    const allKeys = new Set<string>()
+    profitLossLogs.forEach(log => {
+      Object.keys(log).forEach(key => allKeys.add(key))
+    })
+    
+    // Sort keys for consistent display (trade_id first, then alphabetically)
+    const sortedKeys = Array.from(allKeys).sort((a, b) => {
+      if (a === 'trade_id') return -1
+      if (b === 'trade_id') return 1
+      return a.localeCompare(b)
+    })
+    
+    return sortedKeys
+  }
+
+  const formatColumnName = (key: string) => {
+    // Convert snake_case to Title Case
+    return key
+      .split('_')
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+      .join(' ')
+  }
+
+  const renderCell = (key: string, value: any, log: any) => {
+    // Special formatting for specific fields
+    if (key === 'trade_id') {
+      return <td key={key} className={styles.tradeId}>{value || '-'}</td>
+    }
+    
+    if (key === 'option_name') {
+      return <td key={key} className={styles.optionName}>{value || '-'}</td>
+    }
+    
+    if (key === 'trade_type') {
+      return (
+        <td key={key}>
+          <span className={`${styles.tradeType} ${value === 'LONG' ? styles.long : value === 'SHORT' ? styles.short : ''}`}>
+            {value || '-'}
+          </span>
+        </td>
+      )
+    }
+    
+    if (key === 'exit_reason') {
+      return (
+        <td key={key}>
+          <span className={`${styles.exitReason} ${
+            value === 'Take Profit' ? styles.profit :
+            value === 'Stop Loss' ? styles.loss : ''
+          }`}>
+            {value || '-'}
+          </span>
+        </td>
+      )
+    }
+    
+    // Date fields
+    if (key.includes('time') || key.includes('_at') || key.includes('created') || key.includes('updated')) {
+      return <td key={key} className={styles.timeCell}>{formatValue(key, value)}</td>
+    }
+    
+    // Default cell
+    return <td key={key}>{formatValue(key, value)}</td>
+  }
+
   const renderProfitLossTable = () => {
     if (loading && profitLossLogs.length === 0) {
       return <div className={styles.loading}>Loading logs...</div>
@@ -109,46 +195,22 @@ export default function BotLogs() {
     if (profitLossLogs.length === 0) {
       return <div className={styles.empty}>No profit/loss logs available</div>
     }
+    
+    const columns = getColumnHeaders()
+    
     return (
       <table className={styles.logsTable}>
         <thead>
           <tr>
-            <th>Trade ID</th>
-            <th>Option Name</th>
-            <th>Type</th>
-            <th>Buy Nifty</th>
-            <th>Buy Option</th>
-            <th>Sell Nifty</th>
-            <th>Sell Option</th>
-            <th>Exit Reason</th>
-            <th>Buy Time</th>
-            <th>Sell Time</th>
+            {columns.map(column => (
+              <th key={column}>{formatColumnName(column)}</th>
+            ))}
           </tr>
         </thead>
         <tbody>
           {profitLossLogs.map((log, index) => (
             <tr key={log.trade_id || index}>
-              <td className={styles.tradeId}>{log.trade_id || '-'}</td>
-              <td className={styles.optionName}>{log.option_name || '-'}</td>
-              <td>
-                <span className={`${styles.tradeType} ${log.trade_type === 'LONG' ? styles.long : styles.short}`}>
-                  {log.trade_type || '-'}
-                </span>
-              </td>
-              <td>{formatPrice(log.buy_nifty_price)}</td>
-              <td>{formatPrice(log.buy_option_price)}</td>
-              <td>{formatPrice(log.sell_nifty_price)}</td>
-              <td>{formatPrice(log.sell_option_price)}</td>
-              <td>
-                <span className={`${styles.exitReason} ${
-                  log.exit_reason === 'Take Profit' ? styles.profit :
-                  log.exit_reason === 'Stop Loss' ? styles.loss : ''
-                }`}>
-                  {log.exit_reason || '-'}
-                </span>
-              </td>
-              <td className={styles.timeCell}>{formatDate(log.buy_time)}</td>
-              <td className={styles.timeCell}>{formatDate(log.sell_time)}</td>
+              {columns.map(column => renderCell(column, log[column], log))}
             </tr>
           ))}
         </tbody>
